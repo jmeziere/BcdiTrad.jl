@@ -90,7 +90,7 @@ function operate(shrink::Shrink, state::State)
 end
 
 """
-    Center(state, threshold, sigma)
+    Center(state)
 
 Create an object that centers the current state
 """
@@ -101,7 +101,7 @@ struct Center <: Operator
     space::CuArray{Float64, 3, CUDA.Mem.DeviceBuffer}
     support::CuArray{Bool, 3, CUDA.Mem.DeviceBuffer}
 
-    function Center(state, threshold, sigma)
+    function Center(state)
         s = size(state.realSpace)
         xArr = zeros(Int64, s)
         yArr = zeros(Int64, s)

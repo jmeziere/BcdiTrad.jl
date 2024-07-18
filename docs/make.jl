@@ -1,7 +1,5 @@
-push!(LOAD_PATH,"../src/")
 using Documenter
-include("../src/State.jl")
-include("../src/Operators.jl")
+include("DummyDocs.jl")
 
 makedocs(
     sitename="BcdiCore.jl",
