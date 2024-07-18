@@ -3,6 +3,10 @@ uuid = "b788224a-5de6-46e5-9aeb-ad1a5171efd9"
 authors = ["Jason Meziere"]
 version = "1.0.0-DEV"
 
+[deps]
+BcdiCore = "72eb6a3e-ca63-4742-b260-85b05ca6d9e4"
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
+
 [compat]
 julia = "1.6.7"
 

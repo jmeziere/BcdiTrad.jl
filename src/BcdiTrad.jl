@@ -1,5 +1,8 @@
 module BcdiTrad
+    using CUDA.CUFFT
+    using CUDA
+    using BcdiCore
 
-# Write your package code here.
-
+    include("State.jl")
+    include("Operators.jl")
 end
