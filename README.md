@@ -4,4 +4,4 @@
 =======
 # BcdiTrad
 
-[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://byu-cig.github.io/BcdiCore.jl/dev)
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://byu-cig.github.io/BcdiTrad.jl/dev)
