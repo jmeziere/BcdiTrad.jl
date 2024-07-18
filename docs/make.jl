@@ -1,5 +1,7 @@
 push!(LOAD_PATH,"../src/")
-using Documenter, BcdiCore
+using Documenter
+include("../src/State.jl")
+include("../src/Operators.jl")
 
 makedocs(
     sitename="BcdiCore.jl",
