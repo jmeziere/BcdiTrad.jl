@@ -1,4 +1,5 @@
 module DummyDocs
+export State,ER,HIO,Shrink,Center
 
 """
     State(intensities, recSupport)
