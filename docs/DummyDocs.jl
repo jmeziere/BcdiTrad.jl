@@ -1,4 +1,5 @@
 module DummyDocs
+
 """
     State(intensities, recSupport)
 
@@ -38,4 +39,6 @@ end
 Create an object that centers the current state
 """
 function Center(state)
+end
+
 end
