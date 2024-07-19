@@ -1,4 +1,4 @@
-# BcdiCore.jl Documentation
+# BcdiTrad.jl Documentation
 
 ## About
 
