@@ -19,5 +19,5 @@ State(intenities, recSupport)
 ER()
 HIO(beta)
 Shrink(threshold, sigma, state)
-Center(state, threshold, sigma)
+Center(state)
 ```

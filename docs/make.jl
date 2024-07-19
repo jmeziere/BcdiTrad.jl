@@ -1,5 +1,6 @@
 using Documenter
 include("DummyDocs.jl")
+using .DummyDocs
 
 makedocs(
     sitename="BcdiCore.jl",
