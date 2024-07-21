@@ -31,6 +31,7 @@ struct State{T}
         shift .= [1,1,1] .- round.(Int64, mapreduce(sqrt, +, intens))
         shift .*= -1
         intens = CuArray{Float64, 3, CUDA.Mem.DeviceBuffer}(circshift(intens,shift))
+        recSupport = CuArray{Float64, 3, CUDA.Mem.DeviceBuffer}(circshift(recSupport,shift))
 
         realSpace = CUDA.zeros(ComplexF64, s)
         state = BcdiCore.TradState("L2", false, realSpace, intens, recSupport)

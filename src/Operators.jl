@@ -57,7 +57,7 @@ struct Shrink{T} <: Operator
     plan::T
 
     function Shrink(threshold, sigma, state)
-        s = size(state.recipSpace)
+        s = size(state.realSpace)
         kernel = zeros(ComplexF64, s)
         for i in 1:s[1]
             for j in 1:s[2]
