@@ -8,7 +8,7 @@ struct State{T}
     realSpace::CuArray{ComplexF64, 3, CUDA.Mem.DeviceBuffer}
     shift::Vector{Int64}
     support::CuArray{Bool, 3, CUDA.Mem.DeviceBuffer}
-    state::T
+    core::T
 
     function State(intens, recSupport)
         invInt = CUFFT.ifft(CuArray{Float64, 3, CUDA.Mem.DeviceBuffer}(intens))
@@ -28,16 +28,16 @@ struct State{T}
                 end
             end
         end
-        shift .= [1,1,1] .- round.(Int64, mapreduce(sqrt, +, intens))
-        shift .*= -1
+        shift .= [1,1,1] .- round.(Int64, shift ./ mapreduce(sqrt, +, intens))
         intens = CuArray{Float64, 3, CUDA.Mem.DeviceBuffer}(circshift(intens,shift))
         recSupport = CuArray{Float64, 3, CUDA.Mem.DeviceBuffer}(circshift(recSupport,shift))
+        shift .*= -1
 
         realSpace = CUDA.zeros(ComplexF64, s)
-        state = BcdiCore.TradState("L2", false, realSpace, intens, recSupport)
-        realSpace .= CUFFT.ifft(sqrt.(intens))
+        core = BcdiCore.TradState("L2", false, realSpace, intens, recSupport)
+        realSpace .= CUFFT.ifft(sqrt.(intens) .* recSupport)
 
-        new{typeof(state)}(realSpace, shift, support, state)
+        new{typeof(core)}(realSpace, shift, support, core)
     end
 end
 
