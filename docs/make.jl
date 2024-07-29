@@ -3,7 +3,7 @@ include("DummyDocs.jl")
 using .DummyDocs
 
 makedocs(
-    sitename="BcdiCore.jl",
+    sitename="BcdiTrad.jl",
     format = Documenter.HTML(
         prettyurls = get(ENV, "CI", nothing) == "true"
     ),
