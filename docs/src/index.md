@@ -10,9 +10,8 @@ Currently, this entire package must be run with access to GPUs. This may change 
 
 ## Installation
 
-Currently, BcdiTrad.jl is not registered in the Julia general registry. BcdiTrad.jl can be installed by running in the REPL package manager (```]```):
+Currently, BcdiTrad.jl is registered in the Julia general registry and can be installed by running in the REPL package manager (```]```):
 
 ```
-add https://github.com/byu-cig/BcdiCore.jl.git
-add https://github.com/byu-cig/BcdiTrad.jl.git
+add BcdiTrad
 ```
