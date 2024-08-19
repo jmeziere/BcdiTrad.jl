@@ -1,6 +1,5 @@
 using Documenter
-include("DummyDocs.jl")
-using .DummyDocs
+using BcdiTrad
 
 makedocs(
     sitename="BcdiTrad.jl",
@@ -8,7 +7,8 @@ makedocs(
         prettyurls = get(ENV, "CI", nothing) == "true"
     ),
     pages = [
-        "Main"=>"index.md",
+        "BCDI"=>"index.md",
+        "BcdiTrad"=>"main.md",
         "Usage"=>"use.md"
     ]
 )
