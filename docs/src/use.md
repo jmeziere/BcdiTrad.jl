@@ -15,9 +15,9 @@ This short script applies 20 HIO iterations and one ER iterations for a total of
 # API
 
 ```@docs
-State(intenities, recSupport)
-ER()
-HIO(beta)
-Shrink(threshold, sigma, state)
-Center(state)
+BcdiTrad.State(intenities, recSupport)
+BcdiTrad.ER()
+BcdiTrad.HIO(beta)
+BcdiTrad.Shrink(threshold, sigma, state)
+BcdiTrad.Center(state)
 ```
