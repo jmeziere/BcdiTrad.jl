@@ -4,12 +4,12 @@ using BcdiTrad
 makedocs(
     sitename="BcdiTrad.jl",
     format = Documenter.HTML(
-        prettyurls = get(ENV, "CI", nothing) == "true"
+        prettyurls = true
     ),
     pages = [
         "BcdiTrad"=>"index.md",
         "Usage"=>"use.md"
-    ]
+    ],
 )
 
 deploydocs(

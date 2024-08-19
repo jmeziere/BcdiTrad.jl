@@ -14,14 +14,10 @@ This short script applies 20 HIO iterations and one ER iterations for a total of
 
 # API
 
-```@meta
-CurrentModule = BcdiTrad
-```
-
 ```@docs
-BcdiTrad.State(intensities, recSupport)
-BcdiTrad.ER()
-BcdiTrad.HIO(beta)
-BcdiTrad.Shrink(threshold, sigma, state)
-BcdiTrad.Center(state)
+BcdiTrad.State
+BcdiTrad.ER
+BcdiTrad.HIO
+BcdiTrad.Shrink
+BcdiTrad.Center
 ```
