@@ -62,7 +62,6 @@ Marchesini [Marchesini2007](@cite) has shown that the HIO algorithm is
 equivalent to a mini-max problem.
 
 More information about the HIO algorithm can be found in [Fienup1978,Marchesini2007](@cite).
-```
 """
 struct HIO <: Operator
     beta::Float64
@@ -84,7 +83,7 @@ using `sigma` as the width of the Gaussian. The support is then created
 from everything above the `threshold` times maximum value of the blurred
 object.
 
-Further information about the shrinkwrap algorithm can be found in [Marchesini2003a](@cite)
+Further information about the shrinkwrap algorithm can be found in [Marchesini2003a](@cite).
 """
 struct Shrink{T} <: Operator
     threshold::Float64
