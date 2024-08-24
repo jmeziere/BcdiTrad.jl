@@ -31,7 +31,7 @@ support constraint to the object, then returnns.
 Gradient descent is an alternate way to view the ER algorithm becausee
 ER is equivalent to gradient descent with a step size of 0.5.
 
-More information about the ER algorithm can be found in [Fienup1978,Marchesini2007](@cite).
+More information about the ER algorithm can be found in [Fienup1978](@cite) and [Marchesini2007](@cite).
 """
 struct ER <: Operator
 end
@@ -61,7 +61,7 @@ ER(\\rho_i) & \\rho \\in support \\\\
 Marchesini [Marchesini2007](@cite) has shown that the HIO algorithm is
 equivalent to a mini-max problem.
 
-More information about the HIO algorithm can be found in [Fienup1978,Marchesini2007](@cite).
+More information about the HIO algorithm can be found in [Fienup1978](@cite) and [Marchesini2007](@cite).
 ```
 """
 struct HIO <: Operator
