@@ -9,7 +9,8 @@ makedocs(
     ),
     pages = [
         "BcdiTrad"=>"index.md",
-        "Usage"=>"use.md"
+        "Usage"=>"use.md",
+        "References"=>"refs.md",
     ],
     plugins = [bib]
 )
