@@ -31,15 +31,7 @@ support constraint to the object, then returnns.
 Gradient descent is an alternate way to view the ER algorithm becausee
 ER is equivalent to gradient descent with a step size of 0.5.
 
-More information about the ER algorithm can be found here:
-
-```@bibliography
-Pages = []
-Canonical = false
-
-Fienup1978
-Marchesini2007
-```
+More information about the ER algorithm can be found in [Fienup1978,Marchesini2007](@cite).
 """
 struct ER <: Operator
 end
@@ -69,14 +61,7 @@ ER(\\rho_i) & \\rho \\in support \\\\
 Marchesini [Marchesini2007](@cite) has shown that the HIO algorithm is
 equivalent to a mini-max problem.
 
-More information about the HIO algorithm can be found here:
-
-```@bibliography
-Pages = []
-Canonical = false
-
-Fienup1978
-Marchesini2007
+More information about the HIO algorithm can be found in [Fienup1978,Marchesini2007](@cite).
 ```
 """
 struct HIO <: Operator
@@ -96,17 +81,10 @@ end
 Create an object that applies one iteration of the shrinkwrap algorithm.
 Shrinkwrap first applies a Gaussian blur to the current reconstruction
 using `sigma` as the width of the Gaussian. The support is then created
-from everything above the threshold times maximum value of the blurred
+from everything above the `threshold` times maximum value of the blurred
 object.
 
-Further information about the shrinkwrap algorithm can be found here:
-
-```@bibliography
-Pages = [] 
-Canonical = false
-
-Marchesini2003a
-```
+Further information about the shrinkwrap algorithm can be found in [Marchesini2003aa](@cite)
 """
 struct Shrink{T} <: Operator
     threshold::Float64
