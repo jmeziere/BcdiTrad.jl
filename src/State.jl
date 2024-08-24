@@ -2,8 +2,8 @@
     State(intensities, recSupport)
     State(intensities, recSupport, support)
 
-Create a reconstruction object. The intensities is one fully measured diffraction
-peak and recSupport is a mask over the intensities that remove those intenities
+Create a reconstruction object. `intensities` is one fully measured diffraction
+peak and `recSupport` is a mask over the intensities that remove those intensities
 from the reconstruction process.
 
 The initialization process shifts the peak to be centered in the Fourier sense
