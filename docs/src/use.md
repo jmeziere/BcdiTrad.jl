@@ -21,3 +21,12 @@ BcdiTrad.HIO
 BcdiTrad.Shrink
 BcdiTrad.Center
 ```
+
+```@bibliography
+Pages = []
+Canonical = false
+
+Fienup1978
+Marchesini2007
+Marchesini2003a
+```
