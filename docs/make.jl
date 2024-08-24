@@ -1,5 +1,6 @@
-using Documenter
-using BcdiTrad
+using Documenter, DocumenterCitations, BcdiTrad
+
+bib = CitationBibliography(joinpath(@__DIR__, "src", "refs.bib"))
 
 makedocs(
     sitename="BcdiTrad.jl",
@@ -10,6 +11,7 @@ makedocs(
         "BcdiTrad"=>"index.md",
         "Usage"=>"use.md"
     ],
+    plugins = [bib]
 )
 
 deploydocs(

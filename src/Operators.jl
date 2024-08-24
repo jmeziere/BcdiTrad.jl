@@ -18,7 +18,27 @@ end
 """
     ER()
 
-Create an object that applies an iteration of ER
+Create an object that applies one iteration of Error Reduction (ER).
+ER is an iterative projection algorithm that enforces two constraints,
+(1) the modulus constraint and (2) the support constraint:
+
+1. When moved to reciprocal space, the reconstructed object must match the diffraction pattern.
+2. The reconstructed object must fully lie within the support.
+
+One iteration of ER first applies the modulus constraint, then the
+support constraint to the object, then returnns.
+
+Gradient descent is an alternate way to view the ER algorithm becausee
+ER is equivalent to gradient descent with a step size of 0.5.
+
+More information about the ER algorithm can be found here:
+```@bibliography
+Pages = []
+Canonical = false
+
+Fienup1978
+Marchesini2007
+```
 """
 struct ER <: Operator
 end
@@ -32,7 +52,30 @@ end
 """
     HIO(beta)
 
-Create an object that applies an iteration of HIO
+Create an object that applies an iteration of hybrid input-output (HIO).
+On the interior of the support, HIO is equivalent to applying the modulus
+constraint as described in the [`ER`](@ref) algorithm, and on the exterior 
+of the support, HIO is equal to the current reconstruction minus a 
+fraction of the output after applying the modulus constraint, that is,
+
+```math
+\\rho_{i+1} = \\begin{cases}
+ER(\\rho_i) & \\rho \\in support
+\\rho_i - \\beta ER(\\rho_i) & \\rho \notin support
+\\end{cases}
+```
+
+Marchesini [Marchesini2007](@cite) has shown that the HIO algorithm is
+equivalent to a mini-max problem.
+
+More information about the HIO algorithm can be found here:
+```@bibliography
+Pages = []
+Canonical = false
+
+Fienup1978
+Marchesini2007
+```
 """
 struct HIO <: Operator
     beta::Float64
@@ -46,9 +89,21 @@ function operate(hio::HIO, state::State)
 end
 
 """
-    Shrink(threshold, sigma, state)
+    Shrink(threshold, sigma, state::State)
 
-Create an object that applies shrinkwrap
+Create an object that applies one iteration of the shrinkwrap algorithm.
+Shrinkwrap first applies a Gaussian blur to the current reconstruction
+using `sigma` as the width of the Gaussian. The support is then created
+from everything above the threshold times maximum value of the blurred
+object.
+
+Further information about the shrinkwrap algorithm can be found here:
+```@bibliography
+Pages = [] 
+Canonical = false
+
+Marchesini2003a
+```
 """
 struct Shrink{T} <: Operator
     threshold::Float64
@@ -90,7 +145,11 @@ end
 """
     Center(state)
 
-Create an object that centers the current state
+Create an object that centers the current state.
+The center of mass of the support is calculated and the object
+is moved so the center of mass is centered in the Fourier transform
+sense. In other words, the center of mass is moved to the zeroth
+frequency, or the bottom left corner of the image. 
 """
 struct Center <: Operator
     xArr::CuArray{Int64, 3, CUDA.Mem.DeviceBuffer}

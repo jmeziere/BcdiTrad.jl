@@ -1,8 +1,16 @@
 """
     State(intensities, recSupport)
+    State(intensities, recSupport, support)
 
-Create a reconstruction object. The intensities and a mask over reciprocal space
-indicating trusted intensities need to be passed in.
+Create a reconstruction object. The intensities is one fully measured diffraction
+peak and recSupport is a mask over the intensities that remove those intenities
+from the reconstruction process.
+
+The initialization process shifts the peak to be centered in the Fourier sense
+(i.e. the center of mass of the peak is moved to the edge of the image, or the
+zero frequency). If the support is not passed in, an initial guess of the support 
+is created by taking an IFFT of the intensities and including everything above
+0.1 times the maximum value.
 """
 struct State{T}
     realSpace::CuArray{ComplexF64, 3, CUDA.Mem.DeviceBuffer}
