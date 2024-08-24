@@ -32,6 +32,7 @@ Gradient descent is an alternate way to view the ER algorithm becausee
 ER is equivalent to gradient descent with a step size of 0.5.
 
 More information about the ER algorithm can be found here:
+
 ```@bibliography
 Pages = []
 Canonical = false
@@ -60,7 +61,7 @@ fraction of the output after applying the modulus constraint, that is,
 
 ```math
 \\rho_{i+1} = \\begin{cases}
-ER(\\rho_i) & \\rho \\in support
+ER(\\rho_i) & \\rho \\in support \\\\
 \\rho_i - \\beta ER(\\rho_i) & \\rho \notin support
 \\end{cases}
 ```
@@ -69,6 +70,7 @@ Marchesini [Marchesini2007](@cite) has shown that the HIO algorithm is
 equivalent to a mini-max problem.
 
 More information about the HIO algorithm can be found here:
+
 ```@bibliography
 Pages = []
 Canonical = false
@@ -98,6 +100,7 @@ from everything above the threshold times maximum value of the blurred
 object.
 
 Further information about the shrinkwrap algorithm can be found here:
+
 ```@bibliography
 Pages = [] 
 Canonical = false
