@@ -54,7 +54,7 @@ fraction of the output after applying the modulus constraint, that is,
 ```math
 \\rho_{i+1} = \\begin{cases}
 ER(\\rho_i) & \\rho \\in support \\\\
-\\rho_i - \\beta ER(\\rho_i) & \\rho \notin support
+\\rho_i - \\beta * ER(\\rho_i) & \\rho \\notin support
 \\end{cases}
 ```
 
