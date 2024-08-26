@@ -1,11 +1,12 @@
 # BcdiTrad
 
 <!-- [![Build Status](https://github.com/jmeziere/BcdiTrad.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/jmeziere/BcdiTrad.jl/actions/workflows/CI.yml?query=branch%3Amain) -->
-[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://byu-cxi.github.io/BcdiTrad.jl/dev)
+[![](https://img.shields.io/badge/Docs-Full-blue.svg)](https://byu-cxi.github.io/BcdiDocs/dev)
+[![](https://img.shields.io/badge/Docs-Part-blue.svg)](https://byu-cxi.github.io/BcdiTrad.jl/dev)
 
 ## About
 
-Bragg Coherent Diffraction Imaging (BCDI) Trad (Traditional) implements projection-based phase retrieval algorithms. Some of the core functionality of this project is implemented in BcdiCore.jl. Additionally, this package is part of a collection of BCDI packages consisting of BcdiAtomic.jl (an atomic scale BCDI solver), BcdiMeso.jl (a mesoscale BCDI Solver), and BcdiMulti.jl (a multiscale BCDI solver).
+Bragg Coherent Diffraction Imaging (BCDI) Trad (Traditional) implements projection-based phase retrieval algorithms. This package is part of a collection of packages that solve the BCDI problem.
 
 While this package is marked as BCDI specific, the methods are more general and can be used in many phase retrieval problems. In the future, this package may be incorporated into a more general phase retrieval core package.
 
