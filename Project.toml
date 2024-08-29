@@ -1,7 +1,7 @@
 name = "BcdiTrad"
 uuid = "b788224a-5de6-46e5-9aeb-ad1a5171efd9"
 authors = ["Jason Meziere"]
-version = "0.0.1"
+version = "0.0.2"
 
 [deps]
 BcdiCore = "72eb6a3e-ca63-4742-b260-85b05ca6d9e4"
@@ -9,8 +9,8 @@ CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
 
 [compat]
 julia = "1.10"
-BcdiCore = "0.0.1"
-CUDA = "5.4.3"
+BcdiCore = "1"
+CUDA = "5"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
