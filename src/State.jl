@@ -12,38 +12,43 @@ zero frequency). If the support is not passed in, an initial guess of the suppor
 is created by taking an IFFT of the intensities and including everything above
 0.1 times the maximum value.
 """
-struct State{T}
-    realSpace::CuArray{ComplexF64, 3, CUDA.Mem.DeviceBuffer}
+struct State{T,I}
+    realSpace::CuArray{ComplexF64, I, CUDA.Mem.DeviceBuffer}
     shift::Tuple{Int64,Int64,Int64}
-    support::CuArray{Bool, 3, CUDA.Mem.DeviceBuffer}
+    support::CuArray{Bool, I, CUDA.Mem.DeviceBuffer}
     core::T
 
-    function State(intens, recSupport)
-        invInt = CUFFT.ifft(CuArray{Float64, 3, CUDA.Mem.DeviceBuffer}(intens))
-        support = abs.(invInt) .> 0.1 * maximum(abs.(invInt))
-        State(intens, recSupport, support)
-    end
+    function State(intens, recSupport; truncRecSupport=true)
+        intens, recSupport, shift = BcdiCore.centerPeak(intens, recSupport, "corner", truncRecSupport)
+        realSpace = CUDA.zeros(ComplexF64, size(intens))
+        support = CUDA.zeros(Bool, size(intens))
 
-    function State(intens, recSupport, support)
-        s = size(intens)
-        intens, recSupport, shift = BcdiCore.centerPeak(intens, recSupport, "corner")
-
-        realSpace = CUDA.zeros(ComplexF64, s)
         core = BcdiCore.TradState("L2", false, realSpace, intens, recSupport)
-        realSpace .= CUFFT.ifft(sqrt.(intens) .* recSupport)
+        initializeState(support, core)
 
-        new{typeof(core)}(realSpace, shift, support, core)
+        new{typeof(core), 3}(realSpace, shift, support, core)
     end
 
-    function State(intens, recSupport, support, core)
-        s = size(intens)
-        intens, recSupport, shift = BcdiCore.centerPeak(intens, recSupport, "corner")
+    function State(intens, recSupport, support, core, truncRecSupport)
+        if ndims(core.realSpace) == 3
+            intens, recSupport, shift = BcdiCore.centerPeak(intens, recSupport, "corner", truncRecSupport)
+        else
+            intens, recSupport, shift = BcdiCore.centerPeak(intens, recSupport, "center", truncRecSupport)
+            support = vec(support)
+        end
 
         newCore = BcdiCore.TradState(
-            core.losstype, core.scale, intens, core.plan, 
+            core.loss, core.scale, intens, core.plan, 
             core.realSpace, recSupport, core.working, core.deriv
         )
-        new{typeof(newCore)}(core.realSpace, shift, support, newCore)
+        new{typeof(newCore), ndims(core.realSpace)}(core.realSpace, shift, support, newCore)
     end
 end
 
+function initializeState(support, core)
+    core.plan \ (core.intens .* core.recSupport)
+    support .= abs.(core.plan.realSpace) .> 0.1 * maximum(abs.(core.plan.realSpace))
+    randAngle = CuArray{Float64}(2 .* pi .* rand(size(core.intens)...))
+    core.plan \ (sqrt.(core.intens .* exp.(1im .* randAngle)) .* core.recSupport)
+    core.realSpace .= core.plan.realSpace
+end
