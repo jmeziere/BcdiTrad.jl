@@ -134,6 +134,7 @@ function operate(hio::HIO, state::State)
     BcdiCore.modifyDeriv(state.core, hio.reg)
     state.realSpace .= 
         (state.realSpace .- state.core.deriv ./ 2.0) .* state.support .+
+        #(state.realSpace .* (1 .- hio.beta) .+ hio.beta .* state.core.deriv ./ 2.0) .* .!state.support
         (state.realSpace .+ hio.beta .* state.core.deriv ./ 2.0) .* .!state.support
 end
 

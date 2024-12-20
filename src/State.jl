@@ -29,7 +29,7 @@ struct State{T,I}
         new{typeof(core), 3}(realSpace, shift, support, core)
     end
 
-    function State(intens, recSupport, support, core, truncRecSupport)
+    function State(losstype, intens, recSupport, support, core, truncRecSupport)
         if ndims(core.realSpace) == 3
             intens, recSupport, shift = BcdiCore.centerPeak(intens, recSupport, "corner", truncRecSupport)
         else
@@ -38,7 +38,7 @@ struct State{T,I}
         end
 
         newCore = BcdiCore.TradState(
-            core.loss, core.scale, intens, core.plan, 
+            losstype, core.scale, intens, core.plan, 
             core.realSpace, recSupport, core.working, core.deriv
         )
         new{typeof(newCore), ndims(core.realSpace)}(core.realSpace, shift, support, newCore)
